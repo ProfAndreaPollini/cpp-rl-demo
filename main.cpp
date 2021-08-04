@@ -21,13 +21,21 @@
 
 #include "raylib-cpp.hpp"
 
+#include "constants.h"
+#include "game.hpp"
+
+
 int main() {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 800;
-    int screenHeight = 450;
+
     raylib::Color textColor = LIGHTGRAY;
-    raylib::Window window(screenWidth, screenHeight, "raylib [core] example - basic window");
+    raylib::Window window(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib [core] example - basic window");
+
+    Game game{};
+    game.setup();
+
+
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -37,6 +45,7 @@ int main() {
         {
         // Update
         //----------------------------------------------------------------------------------
+        game.update();
         // Update your variables here
         //----------------------------------------------------------------------------------
 
@@ -46,7 +55,7 @@ int main() {
 
         window.ClearBackground(RAYWHITE);
 
-        textColor.DrawText("Congrats! You created your first window!", 190, 200, 20);
+        game.draw();
 
         EndDrawing();
         //----------------------------------------------------------------------------------
