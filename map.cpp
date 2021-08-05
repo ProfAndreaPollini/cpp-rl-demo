@@ -8,8 +8,11 @@
 void Map::draw() const {
     for (int y = 0; y < ROWS; ++y) {
         for (int x = 0; x < COLS; ++x) {
-            if (m_grid[y][x] >0) {
+            int tile_id = m_grid[y][x];
+            if (tile_id ==1) {
                 DrawCircle((x+0.5)* TILE_SIZE,(y+0.5)*TILE_SIZE,TILE_SIZE/2,GREEN);
+            } else if (tile_id==2) {
+                DrawCircle((x+0.5)* TILE_SIZE,(y+0.5)*TILE_SIZE,TILE_SIZE/2,ORANGE);
             }
         }
     }

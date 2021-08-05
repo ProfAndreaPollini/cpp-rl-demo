@@ -47,6 +47,6 @@ endif()
 
 
 
-add_executable(cpp_rl_demo main.cpp hero.cpp map.cpp map.h constants.h game.cpp game.hpp entity.cpp entity.hpp item.cpp item.h)
+add_executable(cpp_rl_demo main.cpp hero.cpp map.cpp map.h constants.h game.cpp game.hpp entity.cpp entity.hpp item.cpp item.h room.cpp room.h)
 set(raylib_VERBOSE 1)
 target_link_libraries(cpp_rl_demo PUBLIC raylib raylib-cpp)
