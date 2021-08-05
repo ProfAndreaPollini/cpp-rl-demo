@@ -45,8 +45,9 @@ if (NOT raylib-cpp_FOUND)
     endif()
 endif()
 
+find_package(fmt CONFIG REQUIRED)
 
 
-add_executable(cpp_rl_demo main.cpp hero.cpp map.cpp map.h constants.h game.cpp game.hpp entity.cpp entity.hpp item.cpp item.h room.cpp room.h)
+add_executable(cpp_rl_demo main.cpp hero.cpp map.cpp map.h constants.h game.cpp game.hpp entity.cpp entity.hpp item.cpp item.h room.cpp room.h src/geo_utils.cpp src/geo_utils.h src/monster.cpp src/monster.h)
 set(raylib_VERBOSE 1)
-target_link_libraries(cpp_rl_demo PUBLIC raylib raylib-cpp)
+target_link_libraries(cpp_rl_demo PUBLIC fmt::fmt raylib raylib-cpp)

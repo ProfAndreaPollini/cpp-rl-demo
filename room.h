@@ -6,7 +6,7 @@
 #define CPP_RL_DEMO_ROOM_H
 
 #include <vector>
-
+#include <cmath>
 #include "raylib-cpp.hpp"
 
 class Door;
@@ -26,19 +26,29 @@ public:
 //        self.x1 <= other.x2 && self.x2 >= other.x1 && self.y1 <= other.y2 && self.y2 >= other.y1
 //    }
 
+/// ritorna la posizione in basso a sx per la stanza
+/// \return
     raylib::Vector2 m_end() const { return Vector2Add(m_origin,{static_cast<float>(m_width),static_cast<float>(m_height)});}
 
-    bool intersect(Room& other) { return m_origin.x <= other.m_origin.x + other.m_width && m_origin.x+m_width >= other.m_origin.x &&
+    bool intersect(const Room& other) const  { return m_origin.x <= other.m_origin.x + other.m_width && m_origin.x+m_width >= other.m_origin.x &&
     m_origin.y <= other.m_origin.y + other.m_height && m_origin.y + m_height >= other.m_origin.y;}
+    bool contains(const raylib::Vector2& point) {
+        return (
+                ( point.y - m_origin.y < m_height && point.y - m_origin.y>0) &&
+                (point.x - m_origin.x < m_width && point.x - m_origin.x>0)
+                );
+    }
 
-    raylib::Vector2 center() const { return {(m_origin.x + 0.5f*m_width), m_origin.y + 0.5f * m_height};}
+    raylib::Vector2 center() const { return {floor(m_origin.x + 0.5f*m_width), floor(m_origin.y + 0.5f * m_height)};}
 
-    bool is_on_wall(raylib::Vector2& point) const {
+    bool is_on_wall(const raylib::Vector2& point) const {
         return ((point.x == m_origin.x || point.x == m_end().x)  && ( point.y - m_origin.y < m_height && point.y - m_origin.y>=0) ||
         (point.y == m_origin.y || point.y == m_end().y) &&(point.x - m_origin.x < m_width && point.x - m_origin.x>=0)
         );
     }
 
+    /// aggiunge una porta alla stanza corrente.
+    /// \param door_position
     void add_door(raylib::Vector2 door_position);
 
 };

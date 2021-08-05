@@ -4,6 +4,9 @@
 
 #include "hero.hpp"
 #include "map.h"
+#include "game.hpp"
+
+#include "fmt/core.h"
 
 void Hero::update() {
     raylib::Vector2 dx{};
@@ -25,5 +28,6 @@ void Hero::update() {
         if (Map::getInstance().is_walkable(desired_position.x,desired_position.y)) {
             m_position = desired_position;
         }
+        Game::getInstance().set_state(GameState::MONSTERS_MOVING);
     }
 }

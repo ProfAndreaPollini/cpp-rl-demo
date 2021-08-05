@@ -32,8 +32,7 @@ int main() {
     raylib::Color textColor = LIGHTGRAY;
     raylib::Window window(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib [core] example - basic window");
 
-    Game game{};
-    game.setup();
+    Game::getInstance().setup();
 
 
 
@@ -45,7 +44,7 @@ int main() {
         {
         // Update
         //----------------------------------------------------------------------------------
-        game.update();
+        Game::getInstance().update();
         // Update your variables here
         //----------------------------------------------------------------------------------
 
@@ -55,7 +54,7 @@ int main() {
 
         window.ClearBackground(RAYWHITE);
 
-        game.draw();
+        Game::getInstance().draw();
 
         EndDrawing();
         //----------------------------------------------------------------------------------
